@@ -1,0 +1,11 @@
+body{
+    width: 60%;
+    margin: 0 auto;
+}
+#title{
+    display: inline;
+    text-align: center;
+}
+header{
+    background-color: aqua;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <a href="/">Back</a>
+        <div id="title">
+            <h1 class="title">회원가입</h1>
+        </div>
+    </header>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <div>
+                <h4>ID</h4> 
+                <input type="text" name="username" placeholder="Input user ID" required autofocus  maxlength="20">
+            </div>
+            <div>
+                <h4>PASSWORD</h4>
+                <input type="password" name="password" placeholder=" Input user password" required  maxlength="20">
+            </div>  
+            <div>
+                <h4>E-MAIL</h4> 
+                <input type="email" name="email" placeholder="Input user e-mail" required  maxlength="30">
+            </div>
+        </div>
+        <br><br>
+        {% if error %}
+            <h5>{{ error }}</h5>
+        {%endif%}
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
