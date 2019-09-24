@@ -18,8 +18,9 @@ from django.urls import path, include
 from django.views.generic import RedirectView # 리다이렉트
 
 urlpatterns = [
-    path('main/',include('homepage.urls')),
+    path('',include('homepage.urls')),
     path('admin/', admin.site.urls),
-    path('',RedirectView.as_view(url='/main/')),#permanent=True
+    # path('',RedirectView.as_view(url='/main/')),#permanent=True
     # '' --> main/
+    path('music/',include('new_music.urls')),
 ]

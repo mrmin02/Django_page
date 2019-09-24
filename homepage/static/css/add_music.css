@@ -1,0 +1,16 @@
+
+.input_box{
+    display: inline;
+    border:none;
+    border-bottom:1px solid black;
+    /* border-radius: 30px; */
+    width:300px;
+    height: 50px;
+    font-size: 20px;
+    
+}
+#check_youtube{
+    margin-top: 10px;
+    width: 300px;
+    height: 30px;
+}

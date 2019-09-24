@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homepage',
     'rest_framework',
+    'new_music',
 ]
 STATIC_URL = '/static/'
-
+MEDIA_URL = '/media/' # upload image (user)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # upload directory
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -57,7 +59,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [(os.path.join(BASE_DIR, 'templates')),],
+        # 멀티 어플리케이션에서 template 끼리 참조 할 수있도록.
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

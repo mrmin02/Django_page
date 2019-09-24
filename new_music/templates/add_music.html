@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div>
+    <form action="create_item/" method="post">
+            <label for="youtube_URL" style="font-size: 25px">youtube movie ID</label><br><br>
+            <label for="">ex) https://www.youtube.com/embed/ptnYBctoexk  --> ptnYBctoexk  </label><br>
+            <label>https://www.youtube.com/watch?v=ptnYBctoexk&feature=youtu.be --> ptnYBctoexk </label><br><br>
+            <input type="text" id="youtube_url"class="input_box"required autofocus/><br>
+            <button id="check_youtube" type="click">Check</button><br><br>
+        
+            <div id="check_movie">
+                    <iframe id="movie"width="" height="" src="" 
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+            </div>
+            <br>
+            <label style="font-size: 25px">Image</label><br><br>
+            <img id="youtube_img" width="200px" height="150px"
+            src="" alt=""><br>
+        
+            <label for="m_title"style="font-size: 25px">Title</label><br>
+            <input type="text" class="input_box" required/><br>
+        
+            <label for="singer"style="font-size: 25px">Content</label><br><br>
+            <textarea name="" id="" cols="30" rows="5"style="font-size: 20px; resize: none" required></textarea><br><br>
+        
+            <label for="musical_composer"style="font-size: 25px">Singer</label><br>
+            <input type="text" class="input_box" /><br>
+        
+            <label for=""style="font-size: 25px">musical_composer</label><br>
+            <input type="text" class="input_box"/><br>
+
+            <button id="check_youtube" style="margin-bottom: 50px">Create Item!</button>
+        </div>
+    </form>
+<script>
+    document.getElementById("check_youtube").addEventListener('click',(e)=>{
+    e.preventDefault();
+    var movie = document.getElementById('movie');
+    movie.width=500;
+    movie.height=300;
+    var youtube_id = document.getElementById("youtube_url").value;
+    movie.src='https://www.youtube.com/embed/'+youtube_id;
+    
+    var movie_img=document.getElementById('youtube_img');
+    movie_img.src = "http://img.youtube.com/vi/"+youtube_id+"/0.jpg"
+
+    });
+</script>
+{%endblock%}

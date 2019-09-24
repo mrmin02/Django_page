@@ -8,7 +8,14 @@ body_center {
     justify-content: center;
     align-items: center;
 }
-
+#body_mid_div{
+    /* display: inline; */
+    align-items: center;
+    width:80%;
+    margin:0 auto;
+    text-align: center;
+    /* align-self: center; */
+}
 /* home_main */
 #top_bar{
     width: 70%;
@@ -28,7 +35,18 @@ body_center {
     font-size: 20px;
     border-radius: 30px;
 }
-
+/* item menu bar */
+#item{
+    width:70%;
+    text-align: center;
+    margin: 0 auto;
+}
+#item a{
+    text-decoration: none;
+    font-size: 20pt;
+    margin: 10px 30px;
+    color: black;
+}
 
 /* main image body */
 .img_body{
