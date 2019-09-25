@@ -1,20 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import auth
+
+from new_music.models import Post
 
 from rest_framework import viewsets
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-from django.shortcuts import redirect
+# from django.shortcuts import redirect
 # Create your views here.
 
 def main(req):
     # return HttpResponse('dd')
+    movies = Post.objects.values('youtube_id')
     if req.user.is_authenticated:
-        return render(req,'main.html',{'user':req.user})
-    return render(req,'main.html')
+        return render(req,'main.html',{'user':req.user,'movies':movies})
+    return render(req,'main.html',{'movies':movies})
     # return render(req,'main.html',{'id': data.id,'title': data.title,'content':data.content}) #templates 를 자동으로 찾음.
 
 @csrf_exempt

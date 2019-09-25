@@ -9,3 +9,4 @@ class home_main_img(models.Model):
         managed = True
         db_table = 'home_main_img'
         app_label = 'homepage'
+    

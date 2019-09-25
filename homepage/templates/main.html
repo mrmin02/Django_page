@@ -34,7 +34,11 @@
             {% block content %}
             <body_center>
                 <div class="img_body">
-                    <div class="img_body_item">
+                    {%for i in movies%}
+                        <div class="img_body_item">
+                            <img src="http://img.youtube.com/vi/{{i.youtube_id}}/mqdefault.jpg" alt="">       
+                        </div>
+                    <!-- <div class="img_body_item">
                         <img src="{% static 'image/test_img.jpg'%}" alt="">       
                     </div>
                     <div class="img_body_item">
@@ -45,7 +49,8 @@
                     </div>
                     <div class="img_body_item">
                         <img src="{% static 'image/test_img4.jpg'%}" alt="">       
-                    </div>
+                    </div> -->
+                    {%endfor%}
                 </div>
             </body_center>
             {% endblock %}

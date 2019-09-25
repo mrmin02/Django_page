@@ -14,3 +14,13 @@
     width: 300px;
     height: 30px;
 }
+#new_music_table{
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    /* border: 1px solid black; */
+}
+.new_music_table tr td{
+    border-bottom: 5px solid black;
+    padding: 10px;
+}

@@ -6,7 +6,7 @@
             <label for="youtube_URL" style="font-size: 25px">youtube movie ID</label><br><br>
             <label for="">ex) https://www.youtube.com/embed/ptnYBctoexk  --> ptnYBctoexk  </label><br>
             <label>https://www.youtube.com/watch?v=ptnYBctoexk&feature=youtu.be --> ptnYBctoexk </label><br><br>
-            <input type="text" id="youtube_url"class="input_box"required autofocus/><br>
+            <input type="text" name="youtube_id" id="youtube_url"class="input_box"required autofocus/><br>
             <button id="check_youtube" type="click">Check</button><br><br>
         
             <div id="check_movie">
@@ -20,16 +20,16 @@
             src="" alt=""><br>
         
             <label for="m_title"style="font-size: 25px">Title</label><br>
-            <input type="text" class="input_box" required/><br>
+            <input type="text" name="title" class="input_box" required/><br>
         
             <label for="singer"style="font-size: 25px">Content</label><br><br>
-            <textarea name="" id="" cols="30" rows="5"style="font-size: 20px; resize: none" required></textarea><br><br>
+            <textarea name="content" id="" cols="30" rows="5"style="font-size: 20px; resize: none" required></textarea><br><br>
         
             <label for="musical_composer"style="font-size: 25px">Singer</label><br>
-            <input type="text" class="input_box" /><br>
+            <input type="text" name="singer" class="input_box" /><br>
         
             <label for=""style="font-size: 25px">musical_composer</label><br>
-            <input type="text" class="input_box"/><br>
+            <input type="text" name="musical_composer"class="input_box"/><br>
 
             <button id="check_youtube" style="margin-bottom: 50px">Create Item!</button>
         </div>

@@ -1,8 +1,24 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<a href="addmusic/">글 작성하기</a>
+<a href="addmusic/">글 작성하기</a><br><br><br>
 <!-- <iframe width="500" height="300" src="https://www.youtube.com/embed/hZFBTnzKa54" 
 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 allowfullscreen></iframe> -->
+<table id="new_music_table">
+{%for movie_info in movies%}
+    <tr class="new_music_table_tr"> 
+        <td>
+            <img src="http://img.youtube.com/vi/{{movie_info.youtube_id}}/mqdefault.jpg" alt=""
+            style="width:180px; height:85px;">
+        </td>
+        <td>
+            <label for="">{{movie_info.title}}</label>
+        </td>
+        <td>
+            <label for="">{{movie_info.singer}}</label>
+        </td>
+    </tr>
+{%endfor%}
+</table>
 {%endblock%}
