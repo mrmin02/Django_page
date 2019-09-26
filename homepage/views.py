@@ -14,7 +14,7 @@ import json
 
 def main(req):
     # return HttpResponse('dd')
-    movies = Post.objects.values('youtube_id')
+    movies = Post.objects.values('youtube_id','id')
     if req.user.is_authenticated:
         return render(req,'main.html',{'user':req.user,'movies':movies})
     return render(req,'main.html',{'movies':movies})

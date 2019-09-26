@@ -36,20 +36,10 @@
                 <div class="img_body">
                     {%for i in movies%}
                         <div class="img_body_item">
-                            <img src="http://img.youtube.com/vi/{{i.youtube_id}}/mqdefault.jpg" alt="">       
+                            <a href="/music/item/{{i.id}}">
+                                <img src="http://img.youtube.com/vi/{{i.youtube_id}}/mqdefault.jpg" alt="">       
+                            </a>
                         </div>
-                    <!-- <div class="img_body_item">
-                        <img src="{% static 'image/test_img.jpg'%}" alt="">       
-                    </div>
-                    <div class="img_body_item">
-                        <img src="{% static 'image/test_img2.jpg'%}" alt="">       
-                    </div>
-                    <div class="img_body_item">
-                        <img src="{% static 'image/test_img3.jpg'%}" alt="">       
-                    </div>
-                    <div class="img_body_item">
-                        <img src="{% static 'image/test_img4.jpg'%}" alt="">       
-                    </div> -->
                     {%endfor%}
                 </div>
             </body_center>

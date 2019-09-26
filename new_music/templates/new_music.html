@@ -1,7 +1,11 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<a href="addmusic/">글 작성하기</a><br><br><br>
+{% if user.is_authenticated %}
+    <a href="addmusic/">글 작성하기</a><br><br><br>
+{%else%}
+    <a href="addmusic/">글 작성을 위해 로그인 하기</a><br><br><br>
+{%endif%}
 <!-- <iframe width="500" height="300" src="https://www.youtube.com/embed/hZFBTnzKa54" 
 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 allowfullscreen></iframe> -->
@@ -9,8 +13,8 @@ allowfullscreen></iframe> -->
 {%for movie_info in movies%}
     <tr class="new_music_table_tr"> 
         <td>
-            <img src="http://img.youtube.com/vi/{{movie_info.youtube_id}}/mqdefault.jpg" alt=""
-            style="width:180px; height:85px;">
+            <a href="/music/item/{{movie_info.id}}"><img src="http://img.youtube.com/vi/{{movie_info.youtube_id}}/mqdefault.jpg" alt=""
+            style="width:180px; height:85px;"></a>
         </td>
         <td>
             <label for="">{{movie_info.title}}</label>

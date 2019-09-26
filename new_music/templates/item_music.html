@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% block content%}
+    <div>
+        <h2>Title: {{item.title}}</h2>
+        <p>Singer : {{item.singer}}, Musical Composer : {{item.musical_composer}}</p>
+    </div>
+    <hr style="width: 60%"><br>
+    <div>
+        <iframe id="movie"width="960" height="540" src="https://www.youtube.com/embed/{{item.youtube_id}}" 
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+    </div>
+    <br><br><hr style="width: 60%">
+    <div>
+        <h3>Content</h3><br>
+        <p>{{item.content}}</p>
+    </div>
+    <div>
+        <h3>Comment</h3>
+    </div>
+{%endblock%}
