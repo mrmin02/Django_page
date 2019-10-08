@@ -1,6 +1,12 @@
 {% extends 'main.html' %}
 {% block content%}
     <div>
+        <h3>Writer: {{item.user_id_id}}</h3>
+        {%if user.id == item.user_id_id%}
+            <a href="/music/modify/{{item.id}}"> Modify </a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="/music/remove/{{item.id}}">Remove</a>
+        {%endif%}
         <h2>Title: {{item.title}}</h2>
         <p>Singer : {{item.singer}}, Musical Composer : {{item.musical_composer}}</p>
     </div>
@@ -17,5 +23,9 @@
     </div>
     <div>
         <h3>Comment</h3>
+        <form action="">
+            <textarea name="comment" id="comment" cols="40" rows="3" style="font-size:25px"></textarea>
+        </form>
+        
     </div>
 {%endblock%}

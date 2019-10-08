@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 # Create your views here.
-def new_music(req):
+def new_music(req): # this menu of main
     movies = Post.objects.all()
     return render(req,'new_music.html',{'movies':movies,'user':req.user})
 def add_music(req):# move add_music page    // login
@@ -28,8 +28,34 @@ def create_music(req):
             content = req.POST['content'], youtube_id = req.POST['youtube_id'],
             singer = req.POST['singer'], musical_composer = req.POST['musical_composer'])
         return redirect('new_music')
+
 def show_item(req, item_id):#params item_id is urls.py  // name must ==
     #search in DB
     item = Post.objects.get(id=item_id)
     # post = Post.update_counter(Post)
     return render(req,'item_music.html',{'item':item})
+
+@csrf_exempt
+def modify_item(req,item_id): ## put   but html only  get or post
+    item = Post.objects.get(id=item_id)
+    if req.user.id != item.user_id_id:
+        return redirect('main')
+    
+    if req.method != "POST":
+        return render(req,'add_music.html',{'item':item})
+    
+    item.youtube_id = req.POST['youtube_id']
+    item.title = req.POST['title']
+    item.singer = req.POST['singer']
+    item.musical_composer = req.POST['musical_composer']
+    item.content = req.POST['content']
+    item.save()
+
+    #redirect only string    item_id is int 
+    return redirect('/music/item/'+str(item_id))
+
+@csrf_exempt
+def remove_item(req,item_id):
+    item = Post.objects.get(id=item_id)
+    item.delete()
+    return redirect('/music/')
