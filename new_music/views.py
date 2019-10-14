@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Post, Comment
+from django.core.exceptions import ObjectDoesNotExist  # except
 
 from django.views.decorators.csrf import csrf_exempt
 # from django.contrib import messages #use message
@@ -19,26 +20,38 @@ def add_music(req):# move add_music page    // login
         return redirect('/login/')
     return render(req,'add_music.html')
 
-@csrf_exempt  # add new music 
-def create_music(req):
+
+
+## add new music 
+@csrf_exempt 
+def create_music(req):  
     if req.method == 'POST':
         #user_id = req.user   -- ForeignKey assigned User    // not user.id 
         post = Post.objects.create(
-            user_id = req.user,title = req.POST['title'],
+            user_id = req.user.id,title = req.POST['title'],
             content = req.POST['content'], youtube_id = req.POST['youtube_id'],
-            singer = req.POST['singer'], musical_composer = req.POST['musical_composer'])
+            singer = req.POST['singer'], musical_composer = req.POST['musical_composer'],
+            )
         return redirect('new_music')
+
+
+## get item 
 
 def show_item(req, item_id):#params item_id is urls.py  // name must ==
     #search in DB
     item = Post.objects.get(id=item_id)
-    # post = Post.update_counter(Post)
-    return render(req,'item_music.html',{'item':item})
+    comment = Comment.objects.filter(post_id=item_id)        
+    # print(comment)
+    # user_name = User.objects.get()
+    return render(req,'item_music.html',{'item':item,'comment':comment})
+    # return HttpResponse(comment)
 
+
+## modify post item
 @csrf_exempt
 def modify_item(req,item_id): ## put   but html only  get or post
     item = Post.objects.get(id=item_id)
-    if req.user.id != item.user_id_id:
+    if req.user.id != item.user_id:
         return redirect('main')
     
     if req.method != "POST":
@@ -54,8 +67,24 @@ def modify_item(req,item_id): ## put   but html only  get or post
     #redirect only string    item_id is int 
     return redirect('/music/item/'+str(item_id))
 
-@csrf_exempt
-def remove_item(req,item_id):
+
+## remove post item
+@csrf_exempt   
+def remove_item(req,item_id):    
     item = Post.objects.get(id=item_id)
     item.delete()
-    return redirect('/music/')
+    return redirect('new_music')
+
+
+## add_comment
+@csrf_exempt  
+def add_comment(req,item_id):
+    if req.method !="POST":
+        return redirect('new_music')
+    Comment.objects.create(
+        comment = req.POST['comment'],
+        creater_id=req.user.id, # why req.user.id ??  / when post create  req.user  ok  // after ..only req.user.id  ok.. why?
+        post_id=item_id
+    )
+    # username = req.user.username
+    return redirect('/music/item/'+str(item_id))
