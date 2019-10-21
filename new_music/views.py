@@ -56,7 +56,6 @@ def modify_item(req,item_id): ## put   but html only  get or post
     
     if req.method != "POST":
         return render(req,'add_music.html',{'item':item})
-    
     item.youtube_id = req.POST['youtube_id']
     item.title = req.POST['title']
     item.singer = req.POST['singer']
@@ -87,4 +86,25 @@ def add_comment(req,item_id):
         post_id=item_id
     )
     # username = req.user.username
+    return redirect('/music/item/'+str(item_id))
+
+
+## modify_comment         html  only   GET   or  POST
+@csrf_exempt
+def modify_comment(req,item_id,comment_id):  
+    if req.method !="POST":
+        return redirect('/music/item/'+str(item_id))
+    comment = Comment.objects.get(id=comment_id)  # input tag   is   made for click evenet listener   // so, post['input tag id '] is not found
+    comment.comment = req.POST['new_comment'+str(comment_id)]
+    comment.save()
+    return redirect('/music/item/'+str(item_id))
+    # return HttpResponse(req.POST)
+
+@csrf_exempt
+def delete_comment(req,item_id,comment_id):
+    if req.method != "POST":
+        return redirect('/music/item/'+str(item_id))
+
+    comment = Comment.objects.get(id=comment_id)
+    comment.delete()
     return redirect('/music/item/'+str(item_id))

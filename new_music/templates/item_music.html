@@ -38,10 +38,20 @@
             {%for com in comment%}  
                 <tr>
                     <td><p style="display: block;">Writer : {{com.creater_id}}</p></td>
-                    <td><p>{{com.comment}}</p></td>
+                    
                     {%if user.id == com.creater_id %}
-                        <td><a href="#">Modify</a></td>
-                        <td><a href="#">Delete</a></td>
+
+                        <form action="{{item.id}}/modify_comment/{{com.id}}" method="post">
+                            <td><input id="comment{{com.id}}"name="new_comment{{com.id}}" value={{com.comment}} ></td>
+                            <!-- readonly -->
+                            <td id="modify_td"><button id="modify_comment" >Modify</button></td>
+                        </form>
+                        <form action="{{item.id}}/delete_comment/{{com.id}}" method="post">
+                            <td><button type="submit">Delete</button>
+                        </form>
+                            <!-- <td><a href=""  type="submit">Delete</a></td> -->
+                    {%else%}
+                        <td><p id="comment">{{com.comment}}</p></td>
                     {%endif%}
                 </tr>
             {%endfor%}    
@@ -50,4 +60,21 @@
             <h5>Not Comment</h5>
         {%endif%}
     </div>
+    <script>
+        var modify = document.getElementById('modify_comment');
+
+        modify.addEventListener("click",function add_input (e){
+            // e.preventDefault();
+            // var comment = document.getElementById('comment');
+            // var td = document.getElementById("modify_td");
+            // var input = document.createElement("input");
+            // input.value = comment.innerHTML;
+            // comment.innerHTML = "";
+            // input.name="new_comment";
+            // td.appendChild(input);
+            
+            // modify.removeEventListener("click", add_input);
+        });
+        
+    </script>
 {%endblock%}
